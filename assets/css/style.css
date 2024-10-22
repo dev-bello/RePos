@@ -502,6 +502,28 @@ body {
 
 /* Follower card */
 
+.follower-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing);
+  padding: var(--spacing);
+}
+
+.follower-card .avatar-circle {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.follower-card .icon-btn {
+  margin-inline-start: auto;
+}
+
+.follower-card .card-title {
+  font-size: var(--body);
+  font-weight: var(--weight-regular);
+}
+
 /* Repository card */
 .repo-card {
   position: relative;
@@ -605,8 +627,45 @@ body {
     transform: translateX(0%);
   }
   100% {
-    transform: translateX(2 00%);
+    transform: translateX(200%);
   }
+}
+
+.repo-skeleton,
+.follower-skeleton {
+  background-color: var(--alpha-5);
+}
+
+.repo-skeleton .text-1 {
+  margin-block: 12px;
+}
+
+.repo-skeleton .text-2 {
+  width: 70%;
+}
+
+.repo-skeleton .card-footer {
+  display: flex;
+  gap: var(--spacing);
+  border-block-start: 1px solid var(--alpha-5);
+}
+
+.repo-skeleton .card-footer .text-skeleton {
+  max-width: 56px;
+  flex-grow: 1;
+}
+
+.follower-skeleton {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing);
+  gap: var(--spacing);
+}
+
+.follower-skeleton .avatar-skeleton {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
 }
 
 /*-----------------------------------*\
@@ -679,7 +738,11 @@ body {
   flex-grow: 1;
 }
 
-.header :not(.search-active) .search-box,
+.header:not(.search-active) .header-search {
+  margin-inline-start: auto;
+}
+
+.header:not(.search-active) .search-box,
 .header.search-active :where(.logo, .theme-btn),
 .search-toggler[aria-expanded="true"] .search-icon,
 .search-toggler[aria-expanded="false"] .close-icon,
@@ -700,6 +763,10 @@ body {
 }
 .profile :where(.avatar-circle, .avatar-rounded) {
   width: 160px;
+}
+
+.profile .title-2 {
+  margin-block: 16px 4px;
 }
 .username {
   line-height: 20px;
@@ -793,11 +860,149 @@ body {
 /*-----------------------------------*\
   #ERROR
 \*-----------------------------------*/
+.error {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
+  background-color: var(--background);
+  display: grid;
+  place-content: center;
+  gap: 8px;
+  text-align: center;
+  z-index: 2;
+  display: none;
+}
+
+.error .title-1 {
+  color: var(--alpha-50);
+}
+.error .text {
+  color: var(--alpha-80);
+}
 
 /*-----------------------------------*\
   #FOOTER
 \*-----------------------------------*/
+.footer {
+  padding-block-start: 16px;
+  border-block-start: 1px solid var(--outline);
+  margin-block-start: 16px;
+}
 
+.copyright {
+  color: var(--on-surface-2);
+}
 /*-----------------------------------*\
   #MEDIA QUERIES
 \*-----------------------------------*/
+
+@media (min-width: 768px) {
+  :root {
+    --header-height: 80px;
+  }
+
+  body {
+    padding-block: calc(var(--header-height) + 16px) 32px;
+  }
+  .container {
+    padding-inline: 36px;
+  }
+
+  .card {
+    --spacing: 24px;
+  }
+
+  .avatar-skeleton {
+    width: 200px;
+    height: 200px;
+  }
+
+  .search-btn .material-symbols-rounded,
+  .search-toggler {
+    display: none;
+  }
+
+  .search-box .leading-icon,
+  .search-btn .label-1,
+  .header:not(.search-active) .search-box {
+    display: block;
+  }
+
+  .search-box .leading-icon {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+  }
+  .search-field {
+    padding-inline: 56px 88px;
+  }
+
+  .search-btn {
+    width: max-content;
+    padding-inline: 16px;
+  }
+
+  .header-search {
+    max-width: 360px;
+  }
+
+  .main .container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 36px;
+    align-items: flex-start;
+  }
+
+  .profile :where(.avatar-circle, .avatar-rounded) {
+    width: 200px;
+  }
+
+  .profile {
+    margin-block-end: 0;
+    position: sticky;
+    top: calc(var(--header-height) + 16px);
+  }
+
+  .profile .footer {
+    display: block;
+    margin-block-start: 24px;
+  }
+
+  .tab-container .tab-list {
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+
+  footer.footer {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    padding-inline: 32px;
+  }
+
+  .avatar-skeleton {
+    width: 280px;
+    height: 280px;
+  }
+
+  .main .container {
+    grid-template-columns: 280px 1fr;
+  }
+
+  .profile :where(.avatar-circle, .avatar-rounded) {
+    width: 280px;
+  }
+}
+
+@media (min-width: 1080px) {
+  .tab-panel .card {
+    max-width: calc(50% - 8px);
+  }
+}
