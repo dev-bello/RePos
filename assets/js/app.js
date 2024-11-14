@@ -70,7 +70,7 @@ addEventOnElements($tabBtns, "keydown", function (e) {
 });
 
 const $searchSubmit = document.querySelector("[data-search-submit]");
-let apiUrl = "https://api.github.com/users/codewithsadee";
+let apiUrl = "https://api.github.com/users/dev-bello";
 
 let repoUrl,
   followerUrl,
